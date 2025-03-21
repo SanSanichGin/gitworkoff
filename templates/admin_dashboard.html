@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель адміна</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="container">
+        <h1>Панель адміна</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Логін</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for user in users%}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>
+                        <a href="{{url_for('admin_user_products', user_id=user.id)}}" class="btn">Переглянути продукти</a>
+                        <a href="{{url_for('admin_delete_user', user_id=user.id)}}" class="btn delete" onclick="return confirmDelete()">Видалити</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
